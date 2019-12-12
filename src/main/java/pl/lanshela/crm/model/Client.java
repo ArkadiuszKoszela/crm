@@ -1,23 +1,22 @@
 package pl.lanshela.crm.model;
 
 
+import pl.lanshela.crm.model.dto.ClientDto;
+
 import javax.persistence.*;
-import java.util.List;
 
 @Entity(name = "clients")
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "client_id")
     private Long id;
     @OneToOne
-    @Column(name = "user_data_id")
-    private UserData userData;
-    @OneToOne
-    @Column(name = "personal_data_id")
+    @JoinColumn(name = "personal_data_id")
     private PersonalData personalData;
-    @ManyToOne
-    @JoinColumn(name = "consultant_id")
-    private List<Employee> consultants;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "employee_id")
+    private Employee consultant;
 
     public Client() {
     }
@@ -30,14 +29,6 @@ public class Client {
         this.id = id;
     }
 
-    public UserData getUserData() {
-        return userData;
-    }
-
-    public void setUserData(UserData userData) {
-        this.userData = userData;
-    }
-
     public PersonalData getPersonalData() {
         return personalData;
     }
@@ -46,11 +37,11 @@ public class Client {
         this.personalData = personalData;
     }
 
-    public List<Employee> getConsultants() {
-        return consultants;
+    public Employee getConsultant() {
+        return consultant;
     }
 
-    public void setConsultants(List<Employee> consultants) {
-        this.consultants = consultants;
+    public void setConsultant(Employee consultant) {
+        this.consultant = consultant;
     }
 }

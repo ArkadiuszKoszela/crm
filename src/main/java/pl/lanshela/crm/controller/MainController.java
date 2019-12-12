@@ -10,8 +10,8 @@ import java.util.ArrayList;
 public class MainController {
 
     @GetMapping("/")
-    public String mainPage (){
-        return "index/index";
+    public ModelAndView mainPage() {
+        return new ModelAndView("index/index");
     }
 
 }

@@ -1,5 +1,7 @@
 package pl.lanshela.crm.model;
 
+import pl.lanshela.crm.model.dto.ClientDto;
+
 import javax.persistence.*;
 
 
@@ -7,6 +9,7 @@ import javax.persistence.*;
 public class UserData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_data_id")
     private Long id;
     @Column(nullable = false, unique = true)
     private String login;

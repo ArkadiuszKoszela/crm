@@ -3,19 +3,32 @@ package pl.lanshela.crm.model;
 import javax.persistence.*;
 import java.util.List;
 
+@Entity(name = "employees")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "employee_id")
     private Long id;
     @OneToOne
-    @Column(name = "user_data_id")
+    @JoinColumn(name = "user_data_id")
     private UserData userData;
     @OneToOne
-    @Column(name = "personal_data_id")
+    @JoinColumn(name = "personal_data_id")
     private PersonalData personalData;
-    @ManyToOne
-    @JoinColumn(name = "task_id")
-    private List<Task> tasks;
+
+    //TODO: Tasks assigned to one employee - right now he can only be a leader of a task.
+    //    @ManyToMany(mappedBy = "employees")
+    //    private List<Task> tasks;
+
+    @OneToMany(mappedBy = "consultant",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<Client> clients;
+
+    @OneToMany(mappedBy = "leader",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Task> leaderTasks;
 
     public Employee() {
     }
@@ -44,11 +57,29 @@ public class Employee {
         this.personalData = personalData;
     }
 
-    public List<Task> getTasks() {
-        return tasks;
+    public List<Client> getClients() {
+        return clients;
     }
 
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
+    public void setClients(List<Client> clients) {
+        this.clients = clients;
+    }
+
+    public List<Task> getLeaderTasks() {
+        return leaderTasks;
+    }
+
+    public void setLeaderTasks(List<Task> leaderTasks) {
+        this.leaderTasks = leaderTasks;
+    }
+
+    public void addLeaderTask(Task task) {
+        leaderTasks.add(task);
+        task.setLeader(this);
+    }
+
+    public void removeLeaderTask(Task task) {
+        leaderTasks.remove(task);
+        task.setLeader(null);
     }
 }
