@@ -75,9 +75,9 @@
 
                                 <div class="form-group col-md-6">
                                     <label for="taskStatus"><strong>Status: </strong></label>
-                                    <select id="taskStatus" class="form-control" th:field="${task.taskStatus}">
-                                        <option th:each="status : ${T(pl.lanshela.crm.model.TaskStatus).values()}" th:value="${status}"
-                                                th:text="${status.displayName}"></option>
+                                    <select id="taskStatus" class="form-control" th:field="${task.taskStatusId}">
+                                        <option th:each="taskStatus : ${task.taskStatuses}" th:value="${taskStatus.id}"
+                                                th:text="${taskStatus.name}"></option>
 
                                     </select>
                                 </div>

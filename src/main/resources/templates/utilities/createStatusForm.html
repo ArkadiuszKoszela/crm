@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Lanshela - Edit Client</title>
+    <title>Lanshela - Create Task Status</title>
 
     <!-- Custom fonts for this template-->
     <link th:href="@{../../vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
@@ -44,42 +44,18 @@
             <div class="container-fluid">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Do you want to delete this client?</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Create a new task status!</h6>
                     </div>
                     <div class="card-body">
-                        <form th:action="@{/clients/delete}" th:object="${client}" method="delete">
-                            <input type="hidden" th:field="${client.id}">
+                        <form th:action="@{/statuses/create}" th:object="${taskStatus}" method="post">
                             <div class="form-row">
                                 <div class="form-group col-md-12">
-                                    <label><strong>First name: </strong></label>
-                                    <p th:text="${client.personalData.firstName}"></p>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <label><strong>Last name: </strong></label>
-                                    <p th:text="${client.personalData.lastName}"></p>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-
-                                <div class="form-group col-md-6">
-                                    <label for="consultant"><strong>Consultant: </strong></label>
-                                    <select id="consultant" class="form-control" th:field="${client.consultantId}">
-                                        <option th:each="employee : ${client.employees}" th:value="${employee.id}"
-                                                th:text="${employee.personalData.firstName}+' '+${employee.personalData.lastName}"></option>
-                                    </select>
-                                    </select>
+                                    <label for="taskName"><strong>Name: </strong></label>
+                                    <input type="text" class="form-control" id="taskName"
+                                           placeholder="Enter task status name..." th:field="${taskStatus.name}">
                                 </div>
 
-                                <div class="form-group col-md-6">
-                                    <label for="clientBirthDate"><strong>Birth date: </strong></label>
-                                    <input type="date" class="form-control" id="clientBirthDate" th:field="${client.birthDate}">
-                                </div>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">Confirm Changes</button>
+                            <button type="submit" class="btn btn-primary">Create</button>
                         </form>
                     </div>
                 </div>

@@ -25,7 +25,6 @@ public class Task {
     private Employee leader;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "task_status_id")
-    @Column(name = "task_status")
     private TaskStatus taskStatus;
 
 
@@ -35,7 +34,6 @@ public class Task {
     public Task(TaskDto taskDto) {
         this.name = taskDto.getName();
         this.description = taskDto.getDescription();
-        this.taskStatus = taskDto.getTaskStatus();
     }
 
     public Long getId() {

@@ -1,6 +1,7 @@
 package pl.lanshela.crm.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class TaskStatus {
@@ -12,6 +13,10 @@ public class TaskStatus {
     private String name;
     @Column(name = "hex_color")
     private String hexColor;
+    @OneToMany(mappedBy = "taskStatus",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<Task> tasks;
 
     public Long getId() {
         return id;
@@ -35,5 +40,13 @@ public class TaskStatus {
 
     public String getHexColor() {
         return hexColor;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 }

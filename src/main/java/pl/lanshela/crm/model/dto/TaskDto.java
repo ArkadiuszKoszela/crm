@@ -11,13 +11,15 @@ public class TaskDto {
     private String description;
     private Long leaderId;
     private List<Employee> employees;
-    private TaskStatus taskStatus;
+    private List<TaskStatus> taskStatuses;
+    private Long taskStatusId;
 
     public TaskDto() {
     }
 
-    public TaskDto(List<Employee> availableEmployees) {
-        this.employees = availableEmployees;
+    public TaskDto(List<Employee> employees, List<TaskStatus> taskStatuses) {
+        this.employees = employees;
+        this.taskStatuses = taskStatuses;
     }
 
     public String getName() {
@@ -52,11 +54,21 @@ public class TaskDto {
         this.employees = employees;
     }
 
-    public TaskStatus getTaskStatus() {
-        return taskStatus;
+    public List<TaskStatus> getTaskStatuses() {
+        return taskStatuses;
     }
 
-    public void setTaskStatus(TaskStatus taskStatus) {
-        this.taskStatus = taskStatus;
+    public void setTaskStatuses(List<TaskStatus> taskStatuses) {
+        this.taskStatuses = taskStatuses;
     }
+
+    public Long getTaskStatusId() {
+        return taskStatusId;
+    }
+
+    public void setTaskStatusId(Long taskStatusId) {
+        this.taskStatusId = taskStatusId;
+    }
+
+
 }
