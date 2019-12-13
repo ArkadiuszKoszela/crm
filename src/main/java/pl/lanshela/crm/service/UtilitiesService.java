@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.lanshela.crm.model.TaskStatus;
 import pl.lanshela.crm.repository.TaskStatusRepository;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -19,5 +20,13 @@ public class UtilitiesService {
 
     public void saveTaskStatus(TaskStatus taskStatus){
         taskStatusRepository.save(taskStatus);
+    }
+
+    public List<TaskStatus> findAllTaskStatuses() {
+        return taskStatusRepository.findAll();
+    }
+
+    public TaskStatus findTaskStatusById(Long taskStatusId) {
+        return taskStatusRepository.findById(taskStatusId).get();
     }
 }

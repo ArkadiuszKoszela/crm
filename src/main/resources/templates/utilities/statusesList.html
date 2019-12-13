@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Lanshela - Clients List</title>
+    <title>Lanshela - Task statuses List</title>
 
     <!-- Custom fonts for this template-->
     <link th:href="@{../../vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
@@ -45,14 +45,14 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Clients</h1>
-                <p class="mb-4">Right below you can see a list of clients with simple data such as names and
-                    birthDate.</a>.</p>
+                <h1 class="h3 mb-2 text-gray-800">Task statuses</h1>
+                <p class="mb-4">Right below you can see a list of tasks statuses with simple data such as name and
+                    hex color.</a>.</p>
 
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Clients</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Task statuses</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -60,34 +60,28 @@
                                 <thead>
                                 <tr>
                                     <td><strong>Id</strong></td>
-                                    <td><strong>First name</strong></td>
-                                    <td><strong>Last name</strong></td>
-                                    <td><strong>Consultant</strong></td>
-                                    <td><strong>Birth date</strong></td>
+                                    <td><strong>Name</strong></td>
+                                    <td><strong>Hex color</strong></td>
                                     <td><strong>Actions</strong></td>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
                                     <td><strong>Id</strong></td>
-                                    <td><strong>First name</strong></td>
-                                    <td><strong>Last name</strong></td>
-                                    <td><strong>Consultant</strong></td>
-                                    <td><strong>Birth date</strong></td>
+                                    <td><strong>Name</strong></td>
+                                    <td><strong>Hex color</strong></td>
                                     <td><strong>Actions</strong></td>
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                <tr th:each="client : ${clients}">
-                                    <td th:text="${client.id}"></td>
-                                    <td th:text="${client.personalData.firstName}"></td>
-                                    <td th:text="${client.personalData.lastName}"></td>
-                                    <td th:text="${client.consultant.personalData.firstName}+' '+${client.consultant.personalData.lastName}"></td>
-                                    <td th:text="${client.personalData.birthDate}"></td>
+                                <tr th:each="taskStatus : ${taskStatuses}">
+                                    <td th:text="${taskStatus.id}"></td>
+                                    <td th:text="${taskStatus.name}"></td>
+                                    <td ></td>
                                     <td>
-                                        <a th:href="@{'/clients/edit/'+ ${client.id}}"><i class="fas fa-edit"></i></a>
-                                        <a th:href="@{'/clients/display/'+ ${client.id}}">"><i class="fas fa-sign"></i></a>
-                                        <a th:href="@{'/clients/delete/'+ ${client.id}}">"><i class="fas fa-times"></i></a>
+                                        <a href=""><i class="fas fa-edit"></i></a>
+                                        <a href=""><i class="fas fa-sign"></i></a>
+                                        <a href=""><i class="fas fa-times"></i></a>
                                     </td>
                                 </tr>
                                 </tbody>
