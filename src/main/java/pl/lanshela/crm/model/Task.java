@@ -25,7 +25,7 @@ public class Task {
     private Employee leader;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "task_status_id")
-    @Column(name = "task_status")
+//    @Column(name = "task_status")
     private TaskStatus taskStatus;
 
 
